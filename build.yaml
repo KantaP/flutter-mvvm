@@ -1,0 +1,10 @@
+targets:
+  $default:
+    builders:
+      injectable_generator|injectable_builder:
+        enabled: true
+        generate_for:
+          include:
+            - lib/src/di/**
+            - lib/src/data/**
+            - lib/src/features/**/**/di/**
