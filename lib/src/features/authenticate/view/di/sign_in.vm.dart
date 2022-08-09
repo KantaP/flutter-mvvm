@@ -1,12 +1,18 @@
+import 'package:injectable/injectable.dart';
+import 'package:logging/logging.dart';
 import 'package:prototype/src/constants/routes.dart';
+import 'package:prototype/src/features/authenticate/data/repositories/authentication.repo.dart';
 import 'package:prototype/src/view_model/app_routes.dart';
 import 'package:prototype/src/view_model/view_model.abs.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../model/sign_in.st.dart';
+import '../../model/sign_in.st.dart';
 
-class SignInPageViewModel extends ViewModel
-    implements ViewModelStateManagement {
+@Injectable()
+class SignInPageViewModel extends ViewModel {
+
+  final AuthenticationRepository _repository;
+  SignInPageViewModel(this._repository);
 
   final _stateSubject =
       BehaviorSubject<SignInPageState>.seeded(SignInPageState());
@@ -14,6 +20,8 @@ class SignInPageViewModel extends ViewModel
 
   final _routesSubject = PublishSubject<AppRouteSpec>();
   Stream<AppRouteSpec> get routes => _routesSubject;
+
+  final logger = Logger("signInPageViewModel");
 
   void updateUsername(String username) {
     updateState(<String, dynamic>{SignInFields.username: username});
@@ -23,8 +31,21 @@ class SignInPageViewModel extends ViewModel
     updateState(<String, dynamic>{SignInFields.password: password});
   }
 
-  void signIn() {
-    _routesSubject.add(const AppRouteSpec(name: RoutesConstant.shoppingCart));
+  void signIn() async {
+    final state = _stateSubject.value;
+    final result = await _repository.getUserByFilter(<String, dynamic> {
+      "username" : state.username,
+      "password" : state.password,
+    });
+
+    if(result == null) return;
+    if(result.isNotEmpty) {
+      _routesSubject.add(const AppRouteSpec(name: RoutesConstant.home , action: AppRouteAction.replaceAllWith));
+    }
+  }
+
+  void goToCreateAccount() {
+    _routesSubject.add(const AppRouteSpec(name: RoutesConstant.createAccount));
   }
   
   @override

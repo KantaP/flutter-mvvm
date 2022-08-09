@@ -25,38 +25,6 @@ abstract class NetworkModule {
         requestHeader: true,
         error: true,
       ));
-      // ..interceptors.add(
-      //   InterceptorsWrapper(
-      //     onRequest: (options, handler) {
-      //       if (kDebugMode) {
-      //         logger.info(
-      //           'REQUEST[${options.method}] ===> PATH: ${options.baseUrl}${options.path} \nREQUEST HEADERS: ${options.headers} \nREQUEST PARAMS: ${options.queryParameters.toString()} \nREQUEST BODY: ${options.data.toString()}',
-      //         );
-      //       }
-
-      //       return handler.next(options);
-      //     },
-      //     onResponse: (e, handler) {
-      //       if (kDebugMode) {
-      //         logger.info(
-      //           'RESPONSE[${e.requestOptions.method}] <=== PATH: ${e.requestOptions.baseUrl}${e.requestOptions.path} \nRAW RESPONSE: $e',
-      //         );
-      //       }
-
-      //       return handler.next(e);
-      //     },
-      //     onError: (DioError e, handler) {
-      //       if (kDebugMode) {
-      //         logger.warning(
-      //           'ERROR[${e.requestOptions.method}] <=== PATH: ${e.requestOptions.baseUrl}${e.requestOptions.path} \nRAW ERROR RESPONSE: ${e.response}',
-      //         );
-      //       }
-
-      //       return handler.next(e);
-      //     },
-      //   ),
-      // );
-
     return dio;
   }
 }

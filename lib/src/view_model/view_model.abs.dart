@@ -27,10 +27,6 @@ abstract class ViewModel {
   /// longer visible.
   void routingDidPushNext() {}
 
-  
-}
-
-abstract class ViewModelStateManagement {
-  @protected
+  /// called when set new state
   void updateState(Map<String, dynamic> updateValue);
 }

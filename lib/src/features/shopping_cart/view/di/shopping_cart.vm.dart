@@ -8,7 +8,7 @@ import 'package:rxdart/subjects.dart';
 import '../../model/shopping_cart.st.dart';
 
 @Injectable()
-class ShoppingCartPageViewModel extends ViewModel implements ViewModelStateManagement {
+class ShoppingCartPageViewModel extends ViewModel {
 
   ShoppingCartPageViewModel(ShoppingCartService service) {
     _service = service;

@@ -9,4 +9,5 @@ class ApiConstant {
   static const int connectionTimeout = 30000;
 
   static const String pathProducts = "products";
+  static const String pathEvents = "events";
 }

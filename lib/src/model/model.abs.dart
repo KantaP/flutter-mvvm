@@ -1,5 +1,5 @@
 abstract class ModelJson<T> {
-  List<T> fromArrayJson(List<Map<String, dynamic>> arrJson);
+  List<T> fromArrayJson(List<dynamic> arrJson);
   T fromJson(Map<String, dynamic> json);
   Map<String , dynamic> toJson(T json);
 }

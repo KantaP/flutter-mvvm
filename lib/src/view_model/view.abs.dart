@@ -7,7 +7,6 @@ import 'package:prototype/src/view_model/app_routes.dart';
 import 'view_model.abs.dart';
 
 
-
 final RouteObserver<ModalRoute<void>> routeObserver =
     RouteObserver<ModalRoute<void>>();
 
